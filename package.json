@@ -1,0 +1,31 @@
+{
+  "name": "scenografica-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "preview": "next build && next start",
+    "preview:win": "powershell -ExecutionPolicy Bypass -File scripts/preview-windows.ps1",
+    "preview:window": "scripts\\preview-window.cmd",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.2.8",
+    "@fontsource-variable/manrope": "^5.2.8",
+    "lucide-react": "^1.16.0",
+    "motion": "^12.38.0",
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.8.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.6",
+    "typescript": "^6.0.3"
+  }
+}
