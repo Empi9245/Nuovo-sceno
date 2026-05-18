@@ -56,41 +56,25 @@ These are not optional polish items. Treat them as the next cleanup backlog befo
 
 ## Build, Preview, And QA
 
-Primary workflow for future agents. These two commands must be used together, in this order, when the goal is to see the production build in the browser:
-
-```powershell
-npm.cmd run build
-```
-
-```powershell
-npm.cmd run preview:win
-```
-
-`npm.cmd run build` is the required compile step. `npm.cmd run preview:win` is the required browser preview step after the build. Do not run only one of them when the user asks to build and view the site: run both, as a single workflow, then verify `http://localhost:3000`. Do not substitute `npm.cmd run preview`, raw `next start`, PowerShell jobs, or custom background commands as the normal workflow.
-
-Fallback Codex-specific server startup rule:
-
-Use this only if `npm.cmd run preview:win` cannot keep the preview alive from the current Codex environment. Do not use PowerShell jobs, raw `Start-Process` snippets, or detached shell commands from a normal sandboxed tool call. In this environment those approaches can exit when the tool call ends or hit the Windows `Path`/`PATH` duplication issue.
-
-Instead, open a real Windows terminal with an escalated shell command:
+Primary Codex workflow for future agents. When the goal is to see the production build in the browser, use this single escalated Windows command:
 
 ```powershell
 cmd.exe /c start "Scenografica preview" /min cmd.exe /k "cd /d C:\Progetti Exeva\Nuovo sceno && npm.cmd run preview:window"
 ```
 
-Use `sandbox_permissions: "require_escalated"` with a justification such as: "Vuoi aprire una finestra terminale minimizzata per tenere acceso il server Next.js mentre lo visualizzi nel browser?" Then verify:
+Use `sandbox_permissions: "require_escalated"` with this justification: "Vuoi aprire una finestra terminale minimizzata per tenere acceso il server Next.js mentre lo visualizzi nel browser?" This opens a real Windows terminal, runs the production build through `preview:window`, then keeps `next start` alive for browser preview. Do not use PowerShell jobs, raw `Start-Process` snippets, detached shell commands, or the old two-step `npm.cmd run build` + `npm.cmd run preview:win` flow as the normal browser-preview workflow. Then verify:
 
 ```powershell
 Invoke-WebRequest -UseBasicParsing http://127.0.0.1:3000/ | Select-Object StatusCode,StatusDescription
 ```
 
-The plain `preview` script still exists as `next build && next start`, but it is not the primary workflow for future agents.
+Use `npm.cmd run build` alone only for compile-only checks when browser preview is not needed. The plain `preview` script still exists as `next build && next start`, but it is not the primary workflow for future agents.
 
 Verified current behavior:
 
 - `npm.cmd run build` passes on Next.js 16.2.6.
-- `npm.cmd run preview:win` is the primary preview command after a successful `npm.cmd run build`; use the two commands together to view the production build in the browser.
-- `npm.cmd run preview:window` is only the fallback command used inside a persistent terminal window if Codex cannot keep `preview:win` alive.
+- The single escalated `cmd.exe /c start ... preview:window` command is the primary browser-preview workflow in Codex because it keeps the server alive outside the sandboxed tool call.
+- `npm.cmd run preview:win` can still exist, but it is not the preferred Codex browser-preview path.
 - A local HTTP request to `http://127.0.0.1:3000/` returns `200 OK` while the server is running.
 
 If Next reports `Another next build process is already running`, do not assume a code regression. It usually means another `build` or `preview` command is already active, or a previous build did not exit cleanly. Stop the running command or wait for it to finish before retrying.

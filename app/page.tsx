@@ -1,9 +1,9 @@
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { CtaSection } from "@/components/cta-section";
 import { DepartmentBoard } from "@/components/department-board";
 import { EnvironmentMap } from "@/components/environment-map";
-import { MotionCardLink, MotionLink } from "@/components/motion/motion-link";
+import { HomeProductionSlider } from "@/components/home-production-slider";
+import { MotionLink } from "@/components/motion/motion-link";
 import { Reveal } from "@/components/motion/reveal";
 import { HomeHero } from "@/components/sections/home-hero";
 import { SectionHeading } from "@/components/section-heading";
@@ -34,26 +34,14 @@ export default function HomePage() {
         <EnvironmentMap sectors={sectors} compact />
       </section>
 
-      <section className="page-section home-archive">
-        <SectionHeading eyebrow="Portfolio" title="Lavori reali, materiali visibili.">
+      <section className="page-section home-production-archive">
+        <SectionHeading eyebrow="Portfolio" title="Archivio scorrevole di lavorazioni reali.">
           <p>
-            Il portfolio non anticipa promesse astratte: mostra laboratorio, stampa, wrapping e produzione attraverso
-            immagini reali disponibili nel progetto.
+            Una selezione di dossier fotografici: laboratorio, stampa, wrapping, allestimenti e metodo. Le immagini
+            restano il primo livello di lettura, i metadati orientano il contesto.
           </p>
         </SectionHeading>
-        <div className="home-archive__grid">
-          {portfolioProjects.slice(0, 4).map((project, index) => (
-            <Reveal className={`home-archive__item home-archive__item--${index + 1}`} key={project.slug} delay={index * 0.05}>
-              <MotionCardLink href={project.href}>
-                <div>
-                  <Image src={project.image.src} alt={project.image.alt} fill sizes="(min-width: 900px) 38vw, 100vw" />
-                </div>
-                <span>{project.category}</span>
-                <h3>{project.title}</h3>
-              </MotionCardLink>
-            </Reveal>
-          ))}
-        </div>
+        <HomeProductionSlider projects={portfolioProjects} />
         <div className="home-archive__action">
           <MotionLink href="/portfolio" className="button button--primary">
             Apri il portfolio <ArrowRight size={18} aria-hidden="true" />

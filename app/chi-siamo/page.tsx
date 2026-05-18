@@ -1,11 +1,13 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { CtaSection } from "@/components/cta-section";
+import { KineticText } from "@/components/motion/kinetic-text";
 import { MotionLink } from "@/components/motion/motion-link";
 import { ParallaxMediaFrame } from "@/components/motion/parallax-media";
 import { Reveal } from "@/components/motion/reveal";
-import { clients, contactInfo, trustPoints } from "@/data/site";
+import { clients, trustPoints } from "@/data/site";
 import { AboutKineticHero } from "./about-kinetic-hero";
 
 export const metadata: Metadata = {
@@ -22,22 +24,24 @@ const productionPath = [
 ];
 
 const aboutStats = [
-  { label: "Attivita", value: "10+ anni" },
-  { label: "Sede operativa", value: "Cinecitta" },
-  { label: "Montaggi", value: "Italia" },
-  { label: "Indirizzo", value: "Via Tuscolana 1055" },
+  { label: "Attivita", value: "10+ anni", detail: "Esperienza su produzioni grafiche, scenografiche e installazioni fisiche." },
+  { label: "Sede operativa", value: "Cinecitta", detail: "Una posizione utile per dialogare con set, reparti artistici e produzione." },
+  { label: "Montaggi", value: "Italia", detail: "Consegne e posa seguono il progetto fuori dal laboratorio." },
+  { label: "Indirizzo", value: "Via Tuscolana 1055", detail: "Un luogo reale dove portare brief, reference, materiali e urgenze." },
 ];
+
+const aboutRoute = ["Brief", "Materiali", "Produzione", "Montaggio"];
 
 const galleryImages = [
   {
-    src: "/images/team-produzione.jpg",
-    alt: "Ufficio Scenografica per coordinamento, accoglienza e gestione dei progetti.",
-    caption: "Coordinamento, accoglienza e gestione dei progetti.",
+    src: "/images/montaggio-pannello-spazio-eventi.jpg",
+    alt: "Tecnici durante il montaggio di un pannello grafico in uno spazio interno per allestimento.",
+    caption: "Montaggio e verifica del supporto in ambiente di posa.",
   },
   {
-    src: "/images/hero-laboratorio.jpg",
-    alt: "Pannello Scenografica e stampante grande formato nel laboratorio.",
-    caption: "Materiali, stampa grande formato e supporti di scena.",
+    src: "/images/wall-graphics-spazio-sportivo.jpg",
+    alt: "Grande murale fotografico applicato su parete in uno spazio sportivo.",
+    caption: "Wall graphics e superfici finite nel contesto reale.",
   },
 ];
 
@@ -50,20 +54,47 @@ export default function AboutPage() {
         titleAccent="materia."
         summary="Scenografica lavora dentro una filiera fisica: file, supporti, macchine, tecnici, trasporto e montaggio. La sede presso Cinecitta rende naturale il dialogo con produzioni, set e reparti artistici."
         image={{
-          src: "/images/laboratorio-cinecitta.jpg",
-          alt: "Vista del laboratorio Scenografica negli Studi di Cinecitta.",
+          src: "/images/ingresso-cinecitta-sera.jpg",
+          alt: "Ingresso degli Studi di Cinecitta al tramonto, sede operativa del laboratorio Scenografica.",
         }}
-        address={contactInfo.address}
       />
 
       <section className="about-stat-band" aria-label="Dati sintetici su Scenografica">
-        <div className="about-stat-band__grid">
-          {aboutStats.map((stat, index) => (
-            <Reveal as="article" className="about-stat-band__cell" key={stat.label} delay={index * 0.1}>
-              <span>{stat.label}</span>
-              <strong>{stat.value}</strong>
-            </Reveal>
-          ))}
+        <div className="about-stat-band__shell">
+          <Reveal className="about-stat-band__intro">
+            <p className="eyebrow">Dossier rapido</p>
+            <h2>
+              <KineticText text="Non numeri isolati, ma prove di laboratorio." delay={0.04} />
+            </h2>
+            <p>
+              La pagina chi-siamo deve leggere come una scheda di affidabilita: luogo, tempi, metodo e lavoro fisico.
+            </p>
+          </Reveal>
+          <div className="about-stat-band__grid">
+            {aboutStats.map((stat, index) => (
+              <Reveal as="article" className="about-stat-band__cell" key={stat.label} delay={index * 0.08}>
+                <span className="about-stat-band__index">{String(index + 1).padStart(2, "0")}</span>
+                <span className="about-stat-band__label">
+                  <KineticText text={stat.label} delay={0.12 + index * 0.04} />
+                </span>
+                <strong>
+                  <KineticText text={stat.value} delay={0.22 + index * 0.06} />
+                </strong>
+                <p>{stat.detail}</p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="about-stat-band__route" delay={0.08}>
+            <span>Dal brief alla scena</span>
+            <ol>
+              {aboutRoute.map((step, index) => (
+                <li key={step} style={{ "--about-route-index": index } as CSSProperties}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </Reveal>
         </div>
       </section>
 
@@ -100,14 +131,14 @@ export default function AboutPage() {
         <Reveal className="about-panorama__shell">
           <ParallaxMediaFrame
             image={{
-              src: "/images/laboratorio-cinecitta.jpg",
-              alt: "Vista del laboratorio Scenografica negli Studi di Cinecitta.",
+              src: "/images/installazione-grafica-scenografica-notte.jpg",
+              alt: "Installazione grafica Scenografica illuminata in esterno, vista su larga scala.",
             }}
             className="about-panorama__media"
             sizes="100vw"
             amount={34}
           />
-          <p>Laboratorio presso gli Studi di Cinecitta.</p>
+          <p>Grafica applicata e installata nel contesto reale.</p>
         </Reveal>
       </section>
 
@@ -152,7 +183,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="page-section about-gallery" aria-label="Immagini del laboratorio">
+      <section className="page-section about-gallery" aria-label="Immagini del laboratorio e dei lavori realizzati">
         <div className="about-gallery__grid">
           {galleryImages.map((image, index) => (
             <Reveal className="about-gallery__item" key={image.src} delay={index * 0.1}>

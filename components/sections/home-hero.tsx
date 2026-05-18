@@ -4,6 +4,7 @@ import Image from "next/image";
 import { type CSSProperties, type PointerEvent, useRef } from "react";
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import { ArrowRight, GalleryHorizontalEnd } from "lucide-react";
+import { KineticText } from "@/components/motion/kinetic-text";
 import { MotionLink } from "@/components/motion/motion-link";
 import { easeOut, motionDurations, motionStagger } from "@/components/motion/reveal";
 import { homepageStats } from "@/data/site";
@@ -177,8 +178,8 @@ export function HomeHero() {
           </div>
           <motion.div className="home-hero__image-track" style={{ y: imageY }}>
             <Image
-              src="/images/laboratorio-cinecitta.jpg"
-              alt="Laboratorio Scenografica negli Studi di Cinecittà con stampante grande formato, materiali e tecnici in produzione."
+              src="/images/home-hero-laboratorio-produzione.jpg"
+              alt="Laboratorio Scenografica con stampanti grande formato, pannelli, materiali e tecnici al lavoro."
               fill
               priority
               sizes="(min-width: 1100px) 48vw, 100vw"
@@ -206,24 +207,40 @@ export function HomeHero() {
             ease: easeOut,
           }}
         />
-        <div className="home-hero__stats">
-          {homepageStats.map((stat, index) => (
-            <motion.div
-              className="home-hero__stat"
-              key={stat.label}
-              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: shouldReduceMotion ? 0 : 0.38,
-                delay: shouldReduceMotion ? 0 : 0.66 + index * motionStagger.normal,
-                ease: easeOut,
-              }}
-            >
-              <span className="home-hero__stat-index">{String(index + 1).padStart(2, "0")}</span>
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </motion.div>
-          ))}
+        <div className="home-hero__proof-layout">
+          <motion.div
+            className="home-hero__proof-copy"
+            initial={shouldReduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -18 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.44, delay: shouldReduceMotion ? 0 : 0.58, ease: easeOut }}
+          >
+            <span className="home-hero__proof-kicker">Prova operativa</span>
+            <p>Il laboratorio tiene insieme file, materiali, macchine, tecnici e montaggio.</p>
+          </motion.div>
+          <div className="home-hero__stats">
+            {homepageStats.map((stat, index) => (
+              <motion.div
+                className="home-hero__stat"
+                key={stat.label}
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 0.38,
+                  delay: shouldReduceMotion ? 0 : 0.66 + index * motionStagger.normal,
+                  ease: easeOut,
+                }}
+              >
+                <span className="home-hero__stat-index">{String(index + 1).padStart(2, "0")}</span>
+                <strong>
+                  <KineticText text={stat.value} delay={0.72 + index * 0.08} />
+                </strong>
+                <span className="home-hero__stat-label">
+                  <KineticText text={stat.label} delay={0.84 + index * 0.08} />
+                </span>
+                <p>{stat.detail}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>

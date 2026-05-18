@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { EnvironmentContextCarousel } from "@/components/environment-context-carousel";
 import { MotionCardLink } from "@/components/motion/motion-link";
 import { Reveal } from "@/components/motion/reveal";
 import type { Sector } from "@/data/site";
@@ -10,6 +11,12 @@ type EnvironmentMapProps = {
 };
 
 export function EnvironmentMap({ sectors, compact = false }: EnvironmentMapProps) {
+  if (!compact) {
+    const carouselSectors = sectors.map(({ icon: _icon, ...sector }) => sector);
+
+    return <EnvironmentContextCarousel sectors={carouselSectors} />;
+  }
+
   return (
     <div className={`environment-map ${compact ? "environment-map--compact" : ""}`}>
       {sectors.map((sector, index) => {
@@ -21,7 +28,7 @@ export function EnvironmentMap({ sectors, compact = false }: EnvironmentMapProps
             className={`environment-map__item environment-map__item--${index + 1}`}
             delay={index * 0.045}
           >
-            <MotionCardLink href={sector.href} className="environment-map__link">
+            <MotionCardLink href={sector.href} className="environment-map__link" tilt={false}>
               <div className="environment-map__image">
                 <Image src={sector.image.src} alt={sector.image.alt} fill sizes="(min-width: 1000px) 44vw, 100vw" />
               </div>

@@ -21,7 +21,13 @@ export default function SectorsPage() {
         eyebrow="Settori"
         titleLead="Dove vive il lavoro: camera, pubblico, percorso e"
         titleAccent="spazio commerciale."
+        className="environments-video-hero"
         summary="La stessa tecnologia cambia senso in base al contesto. Materiali, tempi e leggibilita vengono decisi dal luogo in cui il lavoro sara usato."
+        backgroundVideo={{
+          src: "/images/tinyvid_optimized_1_download.mp4",
+          poster: "/images/download.png",
+          pauseMs: 2000,
+        }}
         image={{
           src: "/images/allestimenti-scenografici.jpg",
           alt: "Allestitori al lavoro su materiali scenografici in laboratorio.",
@@ -64,7 +70,10 @@ export default function SectorsPage() {
         <div className="sector-comparison__grid">
           {sectors.map((sector, index) => (
             <Reveal className="sector-comparison__item" key={sector.slug} delay={index * 0.04}>
-              <span>{sector.eyebrow}</span>
+              <div className="sector-comparison__meta">
+                <span className="sector-comparison__index">{String(index + 1).padStart(2, "0")}</span>
+                <span>{sector.eyebrow}</span>
+              </div>
               <h3>{sector.title}</h3>
               <ul>
                 {sector.needs.map((need) => (

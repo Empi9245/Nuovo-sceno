@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { ArrowRight } from "lucide-react";
 import { CtaSection } from "@/components/cta-section";
-import { DepartmentBoard } from "@/components/department-board";
 import { MotionLink } from "@/components/motion/motion-link";
 import { Reveal } from "@/components/motion/reveal";
-import { SectionHeading } from "@/components/section-heading";
+import { ServiceFeatureCarousel } from "@/components/service-feature-carousel";
 import { SplitPageHero } from "@/components/split-page-hero";
 import { servicePillars } from "@/data/site";
 
@@ -15,6 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const carouselServices = servicePillars.map(({ icon: _icon, ...service }) => service);
+
   return (
     <>
       <SplitPageHero
@@ -47,13 +48,7 @@ export default function ServicesPage() {
       </SplitPageHero>
 
       <section className="page-section departments-section">
-        <SectionHeading eyebrow="Aree operative" title="Ogni servizio funziona come un reparto.">
-          <p>
-            Ogni scheda mette in chiaro output, capacita e contesti. La pagina evita quattro blocchi uguali e mostra il
-            diverso peso operativo dei reparti.
-          </p>
-        </SectionHeading>
-        <DepartmentBoard services={servicePillars} />
+        <ServiceFeatureCarousel services={carouselServices} />
       </section>
 
       <section className="page-section department-ledger">

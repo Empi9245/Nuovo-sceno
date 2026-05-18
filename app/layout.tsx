@@ -1,6 +1,7 @@
 import "@fontsource-variable/archivo";
 import "@fontsource-variable/manrope";
 import type { Metadata } from "next";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="it">
       <body>
+        <ScrollToTop />
         <a className="skip-link" href="#contenuto">
           Salta al contenuto
         </a>

@@ -21,8 +21,13 @@ export function FaqList() {
             {group.items.map((item, index) => (
               <Reveal key={item.question} delay={(groupIndex + index) * 0.04}>
                 <details>
-                  <summary>{item.question}</summary>
-                  <p>{item.answer}</p>
+                  <summary>
+                    <span className="faq-list__index">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="faq-list__question">{item.question}</span>
+                  </summary>
+                  <div className="faq-list__answer">
+                    <p>{item.answer}</p>
+                  </div>
                 </details>
               </Reveal>
             ))}

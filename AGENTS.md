@@ -53,31 +53,19 @@ Do not apply that split hero to dynamic detail pages:
 
 ## Verification
 
-Primary build-and-browser workflow. These two commands must be used together, in this order, when the goal is to see the production build in the browser:
-
-```powershell
-npm.cmd run build
-```
-
-```powershell
-npm.cmd run preview:win
-```
-
-`npm.cmd run build` is the required compile step. `npm.cmd run preview:win` is the required browser preview step after the build. Do not run only one of them when the user asks to build and view the site: run both, as a single workflow, then verify `http://localhost:3000`. Future agents should not substitute other build/start commands as the normal workflow.
-
-Only if Codex cannot keep the preview alive after `preview:win`, use this fallback escalated Windows terminal command:
+Primary Codex build-and-browser workflow. When the goal is to see the production build in the browser, use this single escalated Windows command:
 
 ```powershell
 cmd.exe /c start "Scenografica preview" /min cmd.exe /k "cd /d C:\Progetti Exeva\Nuovo sceno && npm.cmd run preview:window"
 ```
 
-Run it with `sandbox_permissions: "require_escalated"` and justification that it opens a terminal to keep the Next.js server alive for browser preview. Do not replace this with PowerShell jobs, raw `Start-Process`, or background shell snippets. Then verify with:
+Run it with `sandbox_permissions: "require_escalated"` and this justification: "Vuoi aprire una finestra terminale minimizzata per tenere acceso il server Next.js mentre lo visualizzi nel browser?" The command opens a real Windows terminal, runs the production build through `preview:window`, then keeps `next start` alive for browser preview. Do not replace this with PowerShell jobs, raw `Start-Process`, background shell snippets, or the old two-step `build` + `preview:win` flow. Then verify with:
 
 ```powershell
 Invoke-WebRequest -UseBasicParsing http://127.0.0.1:3000/ | Select-Object StatusCode,StatusDescription
 ```
 
-The plain `preview` script still exists as `next build && next start`, but it is not the primary workflow for future agents.
+Use `npm.cmd run build` by itself only for compile-only checks when browser preview is not needed. The plain `preview` script still exists as `next build && next start`, but it is not the primary workflow for future agents.
 
 If Next reports `Another next build process is already running`, a previous `build` or `preview` command is still active or did not exit cleanly. Stop the running command or wait for it to finish before starting another build.
 

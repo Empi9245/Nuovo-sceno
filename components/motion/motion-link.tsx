@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, type MotionStyle, useMotionValue, useReducedMotion, useSpring } from "motion/react";
-import type { CSSProperties, PointerEvent, ReactNode } from "react";
+import type { CSSProperties, MouseEvent, PointerEvent, ReactNode } from "react";
 import { easeOut, motionDurations } from "@/components/motion/reveal";
 
 type MotionLinkProps = {
@@ -10,6 +10,8 @@ type MotionLinkProps = {
   children: ReactNode;
   className?: string;
   ariaLabel?: string;
+  draggable?: boolean;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
   style?: CSSProperties;
   tabIndex?: number;
   hoverY?: number;
@@ -27,6 +29,8 @@ function AnimatedLink({
   children,
   className,
   ariaLabel,
+  draggable,
+  onClick,
   style,
   tabIndex,
   hoverY = -2,
@@ -76,6 +80,8 @@ function AnimatedLink({
       href={href}
       aria-label={ariaLabel}
       className={classNames}
+      draggable={draggable}
+      onClick={onClick}
       style={mergedStyle}
       tabIndex={tabIndex}
       onPointerMove={tilt ? handlePointerMove : undefined}
@@ -95,6 +101,6 @@ export function MotionLink(props: MotionLinkProps) {
   return <AnimatedLink {...props} />;
 }
 
-export function MotionCardLink(props: Omit<MotionLinkProps, "hoverY" | "tapScale">) {
-  return <AnimatedLink {...props} hoverY={-4} tapScale={0.985} tilt />;
+export function MotionCardLink({ tilt = true, ...props }: Omit<MotionLinkProps, "hoverY" | "tapScale">) {
+  return <AnimatedLink {...props} hoverY={-2} tapScale={0.985} tilt={tilt} tiltMax={3} tiltScale={1.006} />;
 }

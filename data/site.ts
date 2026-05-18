@@ -99,8 +99,8 @@ export const servicePillars: Service[] = [
     short:
       "Dal file alla posa: pannelli, insegne, murales, vetrine, banner, totem e mockup prodotti nel laboratorio di Cinecittà.",
     image: {
-      src: "/images/stampa-grande-formato.jpg",
-      alt: "Macchina da stampa UV grande formato con pannelli grafici in produzione nel laboratorio Scenografica.",
+      src: "/images/controllo-stampe-laboratorio.jpg",
+      alt: "Operatore al banco di lavoro durante il controllo di stampe e campioni colore nel laboratorio Scenografica.",
     },
     icon: Factory,
     href: "/servizi/stampa-digitale",
@@ -134,8 +134,8 @@ export const servicePillars: Service[] = [
     short:
       "Wrapping, decorazioni adesive e grafiche mobili per portare il messaggio fuori dagli spazi statici.",
     image: {
-      src: "/images/pubblicita-dinamica.jpg",
-      alt: "Furgone Scenografica decorato con grafiche di wrapping all'esterno del laboratorio.",
+      src: "/images/posa-wrapping-furgone-bianco.jpg",
+      alt: "Tecnico che applica pellicola adesiva su un furgone bianco durante una lavorazione di wrapping.",
     },
     icon: Truck,
     href: "/servizi/pubblicita-dinamica",
@@ -168,8 +168,8 @@ export const servicePillars: Service[] = [
     short:
       "Elementi scenici, pavimenti riprodotti, falegnameria, carpenteria metallica, sculture e montaggi in tutta Italia.",
     image: {
-      src: "/images/allestimenti-scenografici.jpg",
-      alt: "Tecnici Scenografica al lavoro in laboratorio su un allestimento scenografico.",
+      src: "/images/montaggio-pannello-scenografico-palco.jpg",
+      alt: "Montaggio di un grande pannello scenografico su palco con scala e struttura tecnica.",
     },
     icon: Wrench,
     href: "/servizi/allestimenti-scenografici",
@@ -202,8 +202,8 @@ export const servicePillars: Service[] = [
     short:
       "Dettagli stampati e personalizzazioni grafiche per film, fiction, programmi TV, spot e videoclip.",
     image: {
-      src: "/images/hero-laboratorio.jpg",
-      alt: "Pannello Scenografica e stampante grande formato, usati per produzioni grafiche e oggetti di scena.",
+      src: "/images/props-documenti-giornali-scena.jpg",
+      alt: "Documenti, giornali e cartelli stampati come accessori grafici di scena.",
     },
     icon: PackageOpen,
     href: "/servizi/accessori-di-scena",
@@ -237,8 +237,8 @@ export const sectors: Sector[] = [
     summary:
       "Un laboratorio dentro Cinecittà, pensato per produzioni che hanno bisogno di prove rapide, dettagli credibili e montaggi puntuali.",
     image: {
-      src: "/images/laboratorio-cinecitta.jpg",
-      alt: "Laboratorio Scenografica presso Cinecittà con stampante grande formato e materiali scenici.",
+      src: "/images/set-tv-scenografia-colorata.jpg",
+      alt: "Set televisivo con scenografia colorata, luci di studio e grafiche sceniche installate.",
     },
     icon: Clapperboard,
     href: "/settori/tv-cinema",
@@ -257,8 +257,8 @@ export const sectors: Sector[] = [
     summary:
       "Allestimenti, grafiche e strutture per ambienti temporanei che devono essere chiari, montabili e riconoscibili in poche ore.",
     image: {
-      src: "/images/allestimenti-scenografici.jpg",
-      alt: "Tecnici al lavoro su materiali e strutture per un allestimento scenografico.",
+      src: "/images/allestimento-grafico-area-evento.jpg",
+      alt: "Allestimento grafico in area evento con pareti decorate e percorso pubblico.",
     },
     icon: Megaphone,
     href: "/settori/eventi-fiere-congressi",
@@ -277,8 +277,8 @@ export const sectors: Sector[] = [
     summary:
       "Pannelli, supporti, riproduzioni e ambienti scenici per percorsi espositivi che richiedono precisione, leggibilità e cura materica.",
     image: {
-      src: "/images/stampa-grande-formato.jpg",
-      alt: "Dettaglio di stampa grande formato con grafiche e pannelli per allestimenti espositivi.",
+      src: "/images/props-documenti-giornali-scena.jpg",
+      alt: "Documenti, giornali e materiali grafici riprodotti per percorsi espositivi e contesti di scena.",
     },
     icon: GalleryHorizontalEnd,
     href: "/settori/musei-mostre",
@@ -297,8 +297,8 @@ export const sectors: Sector[] = [
     summary:
       "Grafiche, vetrine, pareti, insegne e spazi promozionali per marchi che vogliono trasformare il punto vendita in esperienza concreta.",
     image: {
-      src: "/images/pubblicita-dinamica.jpg",
-      alt: "Decorazione Scenografica su veicolo commerciale, esempio di applicazione grafica per brand fisici.",
+      src: "/images/furgone-wrapping-scenografica-cortile.jpg",
+      alt: "Furgone commerciale decorato con wrapping, esempio di identità applicata su superfici fisiche.",
     },
     icon: Building2,
     href: "/settori/retail-spazi-commerciali",
@@ -321,8 +321,8 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Un ambiente produttivo attrezzato per coordinare grafica, materiali e allestimenti scenici nello stesso luogo.",
     image: {
-      src: "/images/laboratorio-cinecitta.jpg",
-      alt: "Vista del laboratorio Scenografica con macchinari e materiali scenici.",
+      src: "/images/laboratorio-wide-stampa-materiali.jpg",
+      alt: "Vista ampia del laboratorio Scenografica con stampante grande formato, scaffali di materiali e tecnici al lavoro.",
     },
     href: "/portfolio/laboratorio-cinecitta",
     services: ["Produzione interna", "Stampa", "Allestimento"],
@@ -341,8 +341,8 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Pannelli, insegne e superfici grafiche prodotti su supporti rigidi e flessibili per scena, eventi e spazi commerciali.",
     image: {
-      src: "/images/stampa-grande-formato.jpg",
-      alt: "Dettaglio della stampa UV su supporti rigidi in laboratorio.",
+      src: "/images/stampa-supporto-flessibile-dettaglio.jpg",
+      alt: "Dettaglio di una stampa su supporto flessibile in uscita dalla lavorazione.",
     },
     href: "/portfolio/stampa-uv-grande-formato",
     services: ["Stampa UV", "Pannellistica", "Finitura"],
@@ -361,8 +361,8 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Costruzione, adattamento e montaggio di elementi scenografici per produzioni audiovisive e ambienti temporanei.",
     image: {
-      src: "/images/allestimenti-scenografici.jpg",
-      alt: "Operatore Scenografica al lavoro su materiali per un allestimento.",
+      src: "/images/allestimento-scenografico-palco-led.jpg",
+      alt: "Allestimento scenografico su palco con pannelli verticali, luci e tecnici in posa.",
     },
     href: "/portfolio/allestimento-produzioni",
     services: ["Scenografia", "Montaggio", "Falegnameria"],
@@ -381,8 +381,8 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Applicazioni grafiche su veicoli e mezzi commerciali, con attenzione a leggibilità, resistenza e identità del marchio.",
     image: {
-      src: "/images/pubblicita-dinamica.jpg",
-      alt: "Furgone Scenografica con wrapping visto dall'ingresso del laboratorio.",
+      src: "/images/furgone-wrapping-scenografica-cortile.jpg",
+      alt: "Furgone Scenografica decorato con wrapping nel cortile operativo del laboratorio.",
     },
     href: "/portfolio/pubblicita-dinamica",
     services: ["Wrapping", "Decorazione veicoli", "Applicazione"],
@@ -401,8 +401,8 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Gestione del dialogo con produzioni, agenzie e clienti, dal brief alla consegna dei materiali pronti per il montaggio.",
     image: {
-      src: "/images/team-produzione.jpg",
-      alt: "Ufficio Scenografica con postazione di coordinamento e area accoglienza.",
+      src: "/images/campionatura-stampe-tavolo-laboratorio.jpg",
+      alt: "Campionature, stampe e prove colore distese sul tavolo di lavoro per il controllo produzione.",
     },
     href: "/portfolio/coordinamento-produzione",
     services: ["Brief", "Preventivo", "Consegna"],
@@ -421,8 +421,8 @@ export const portfolioProjects: PortfolioProject[] = [
     summary:
       "Pannelli e insegne di scena prodotti con attenzione a scala, luce e distanza di lettura.",
     image: {
-      src: "/images/hero-laboratorio.jpg",
-      alt: "Pannello Scenografica accanto alla stampante grande formato.",
+      src: "/images/studio-tv-pavimento-scenografico.jpg",
+      alt: "Pavimento e pannelli scenografici installati in uno studio televisivo con operatori in scena.",
     },
     href: "/portfolio/pannelli-set-design",
     services: ["Pannelli", "Insegne", "Set design"],
@@ -556,9 +556,9 @@ export const trustPoints = [
 ];
 
 export const homepageStats = [
-  { value: "10+", label: "anni di attività" },
-  { value: "Cinecittà", label: "sede operativa" },
-  { value: "Italia", label: "montaggi e consegne" },
+  { value: "10+", label: "anni di attività", detail: "Produzione grafica e scenografica per set, eventi e spazi fisici." },
+  { value: "Cinecittà", label: "sede operativa", detail: "Laboratorio vicino a reparti artistici, produzioni e urgenze di scena." },
+  { value: "Italia", label: "montaggi e consegne", detail: "Squadre e materiali seguono il lavoro fino alla posa nello spazio finale." },
 ];
 
 export const quickActions = [

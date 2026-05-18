@@ -1,0 +1,17 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Definizione del pattern della griglia -->
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <!-- Linea verticale -->
+      <line x1="0" y1="0" x2="0" y2="80" stroke="rgba(240, 235, 230, 0.5)" stroke-width="1"/>
+      <!-- Linea orizzontale -->
+      <line x1="0" y1="0" x2="80" y2="0" stroke="rgba(240, 235, 230, 0.5)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Sfondo marrone scuro (color-ink: oklch(17% 0.012 72)) -->
+  <rect width="1920" height="1080" fill="rgb(37, 33, 31)"/>
+  
+  <!-- Griglia con opacità aumentata -->
+  <rect width="1920" height="1080" fill="url(#grid)" opacity="0.35"/>
+</svg>

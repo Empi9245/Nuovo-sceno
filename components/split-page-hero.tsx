@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties, ReactNode } from "react";
 import { Reveal } from "@/components/motion/reveal";
+import { SplitPageHeroBackgroundVideo } from "@/components/split-page-hero-background-video";
 import type { ImageAsset } from "@/data/site";
 
 type SplitPageHeroProps = {
@@ -9,6 +10,11 @@ type SplitPageHeroProps = {
   titleAccent: string;
   summary: string;
   image: ImageAsset;
+  backgroundVideo?: {
+    src: string;
+    poster?: string;
+    pauseMs?: number;
+  };
   className?: string;
   imagePosition?: string;
   mobileImagePosition?: string;
@@ -26,6 +32,7 @@ export function SplitPageHero({
   titleAccent,
   summary,
   image,
+  backgroundVideo,
   className,
   imagePosition,
   mobileImagePosition,
@@ -34,7 +41,12 @@ export function SplitPageHero({
   caption,
 }: SplitPageHeroProps) {
   const title = `${titleLead} ${titleAccent}`.trim();
-  const heroClassName = ["split-page-hero", className, children ? "" : "split-page-hero--no-panel"]
+  const heroClassName = [
+    "split-page-hero",
+    backgroundVideo ? "split-page-hero--video-background" : "",
+    className,
+    children ? "" : "split-page-hero--no-panel",
+  ]
     .filter(Boolean)
     .join(" ");
   const heroStyle = {
@@ -45,6 +57,13 @@ export function SplitPageHero({
   return (
     <section className={heroClassName} style={heroStyle}>
       <div className="split-page-hero__ink">
+        {backgroundVideo ? (
+          <SplitPageHeroBackgroundVideo
+            src={backgroundVideo.src}
+            poster={backgroundVideo.poster}
+            pauseMs={backgroundVideo.pauseMs}
+          />
+        ) : null}
         <div className="split-page-hero__ink-inner">
           <div className="split-page-hero__copy">
             <Reveal className="split-page-hero__eyebrow" delay={0}>
