@@ -3592,7 +3592,7 @@ main {
 
 .service-feature-carousel__card-stage {
   position: relative;
-  min-height: 640px;
+  min-height: 820px;
   padding: clamp(18px, 2.6vw, 34px);
 }
 
@@ -3625,7 +3625,7 @@ main {
 .service-feature-carousel__copy {
   min-width: 0;
   display: grid;
-  align-content: center;
+  align-content: start;
   gap: 18px;
   padding: clamp(24px, 3.4vw, 46px);
 }
