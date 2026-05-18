@@ -172,10 +172,6 @@ export function HomeHero() {
             onPointerLeave={handleMediaPointerLeave}
             style={mediaStyle}
           >
-            <div className="home-hero__media-index">
-            <span>Archivio di produzione a Cinecittà</span>
-            <span>Lab / stampa / allestimenti</span>
-          </div>
           <motion.div className="home-hero__image-track" style={{ y: imageY }}>
             <Image
               src="/images/home-hero-laboratorio-produzione.jpg"

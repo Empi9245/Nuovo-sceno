@@ -9,7 +9,7 @@ type SplitPageHeroProps = {
   titleLead: string;
   titleAccent: string;
   summary: string;
-  image: ImageAsset;
+  image?: ImageAsset;
   backgroundVideo?: {
     src: string;
     poster?: string;
@@ -45,7 +45,7 @@ export function SplitPageHero({
     "split-page-hero",
     backgroundVideo ? "split-page-hero--video-background" : "",
     className,
-    children ? "" : "split-page-hero--no-panel",
+    children || image ? "" : "split-page-hero--no-panel",
   ]
     .filter(Boolean)
     .join(" ");
@@ -53,6 +53,8 @@ export function SplitPageHero({
     ...(imagePosition ? { "--split-hero-image-position": imagePosition } : {}),
     ...(mobileImagePosition ? { "--split-hero-image-position-mobile": mobileImagePosition } : {}),
   } as CSSProperties;
+
+  const showPaperSection = image || children;
 
   return (
     <section className={heroClassName} style={heroStyle}>
@@ -86,25 +88,29 @@ export function SplitPageHero({
         </div>
       </div>
 
-      <div className="split-page-hero__paper">
-        <div className="split-page-hero__paper-inner">
-          <Reveal className="split-page-hero__visual" delay={0.08}>
-            <Image src={image.src} alt={image.alt} fill priority sizes="(min-width: 1000px) 62vw, 100vw" />
-            {caption ? (
-              <div className="split-page-hero__caption">
-                <span>{caption.label}</span>
-                <strong>{caption.title}</strong>
-              </div>
+      {showPaperSection ? (
+        <div className="split-page-hero__paper">
+          <div className="split-page-hero__paper-inner">
+            {image ? (
+              <Reveal className="split-page-hero__visual" delay={0.08}>
+                <Image src={image.src} alt={image.alt} fill priority sizes="(min-width: 1000px) 62vw, 100vw" />
+                {caption ? (
+                  <div className="split-page-hero__caption">
+                    <span>{caption.label}</span>
+                    <strong>{caption.title}</strong>
+                  </div>
+                ) : null}
+              </Reveal>
             ) : null}
-          </Reveal>
 
-          {children ? (
-            <Reveal className="split-page-hero__panel" delay={0.12}>
-              {children}
-            </Reveal>
-          ) : null}
+            {children ? (
+              <Reveal className="split-page-hero__panel" delay={0.12}>
+                {children}
+              </Reveal>
+            ) : null}
+          </div>
         </div>
-      </div>
+      ) : null}
     </section>
   );
 }

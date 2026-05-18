@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Building2, ChevronLeft, ChevronRight, Clapperboard, GalleryHorizontalEnd, Megaphone } from "lucide-react";
+import { ArrowRight, Building2, Clapperboard, GalleryHorizontalEnd, Megaphone } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { MotionLink } from "@/components/motion/motion-link";
@@ -55,10 +55,6 @@ export function EnvironmentContextCarousel({ sectors }: EnvironmentContextCarous
 
   const goNext = useCallback(() => {
     goTo(activeIndex + 1);
-  }, [activeIndex, goTo]);
-
-  const goPrevious = useCallback(() => {
-    goTo(activeIndex - 1);
   }, [activeIndex, goTo]);
 
   useEffect(() => {
@@ -122,7 +118,12 @@ export function EnvironmentContextCarousel({ sectors }: EnvironmentContextCarous
         id="environment-carousel-panel"
         role="tabpanel"
       >
-        <div className="environment-carousel__visual-stack">
+        <button
+          className="environment-carousel__visual-stack"
+          onClick={goNext}
+          aria-label="Contesto successivo"
+          type="button"
+        >
           {sectors.map((sector, index) => {
             const distance = getWrappedDistance(index, activeIndex, sectors.length);
             const isActive = index === activeIndex;
@@ -147,7 +148,7 @@ export function EnvironmentContextCarousel({ sectors }: EnvironmentContextCarous
               </motion.div>
             );
           })}
-        </div>
+        </button>
 
         <motion.div
           animate={{ opacity: 1, y: 0 }}
@@ -170,15 +171,6 @@ export function EnvironmentContextCarousel({ sectors }: EnvironmentContextCarous
             Apri il brief <ArrowRight size={16} aria-hidden="true" />
           </MotionLink>
         </motion.div>
-
-        <div className="environment-carousel__controls" aria-label="Navigazione contesti">
-          <button aria-label="Contesto precedente" onClick={goPrevious} type="button">
-            <ChevronLeft size={18} aria-hidden="true" />
-          </button>
-          <button aria-label="Contesto successivo" onClick={goNext} type="button">
-            <ChevronRight size={18} aria-hidden="true" />
-          </button>
-        </div>
       </div>
     </div>
   );
