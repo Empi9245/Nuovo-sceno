@@ -50,6 +50,9 @@ export function ServiceFeatureCarousel({ services }: ServiceFeatureCarouselProps
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const isCompactLayout = useMediaQuery("(max-width: 1180px)");
+  const useStaticTabs = isCompactLayout || Boolean(shouldReduceMotion);
+  const useFlatCards = isCompactLayout || Boolean(shouldReduceMotion);
   const activeService = services[activeIndex];
 
   const goTo = useCallback(
@@ -85,7 +88,7 @@ export function ServiceFeatureCarousel({ services }: ServiceFeatureCarouselProps
 
   return (
     <div
-      className="service-feature-carousel"
+      className={`service-feature-carousel ${useStaticTabs ? "service-feature-carousel--static" : ""}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -114,9 +117,9 @@ export function ServiceFeatureCarousel({ services }: ServiceFeatureCarouselProps
               return (
                 <motion.button
                   animate={{
-                    opacity: shouldReduceMotion ? 1 : Math.max(0.42, 1 - Math.abs(distance) * 0.18),
-                    scale: shouldReduceMotion || !isActive ? 1 : 1.015,
-                    y: shouldReduceMotion ? 0 : distance * ITEM_HEIGHT,
+                    opacity: useStaticTabs ? 1 : Math.max(0.42, 1 - Math.abs(distance) * 0.18),
+                    scale: useStaticTabs || !isActive ? 1 : 1.015,
+                    y: useStaticTabs ? 0 : distance * ITEM_HEIGHT,
                   }}
                   aria-controls="service-feature-carousel-panel"
                   aria-selected={isActive}
@@ -125,7 +128,11 @@ export function ServiceFeatureCarousel({ services }: ServiceFeatureCarouselProps
                   key={service.slug}
                   onClick={() => goTo(index)}
                   role="tab"
-                  transition={{ type: "spring", stiffness: 120, damping: 24, mass: 0.9 }}
+                  transition={
+                    useStaticTabs
+                      ? { duration: 0.18, ease: [0.22, 1, 0.36, 1] }
+                      : { type: "spring", stiffness: 120, damping: 24, mass: 0.9 }
+                  }
                   type="button"
                 >
                   <span className="service-feature-carousel__index">{String(index + 1).padStart(2, "0")}</span>
@@ -154,14 +161,18 @@ export function ServiceFeatureCarousel({ services }: ServiceFeatureCarouselProps
               const isActive = index === activeIndex;
               const isAdjacent = Math.abs(distance) === 1;
 
+              if (useFlatCards && !isActive) {
+                return null;
+              }
+
               return (
                 <motion.article
                   animate={{
-                    opacity: shouldReduceMotion ? (isActive ? 1 : 0) : isActive ? 1 : isAdjacent ? 0.42 : 0,
+                    opacity: useFlatCards ? (isActive ? 1 : 0) : isActive ? 1 : isAdjacent ? 0.42 : 0,
                     pointerEvents: isActive ? "auto" : "none",
-                    rotate: shouldReduceMotion ? 0 : isActive ? 0 : distance < 0 ? -2.6 : 2.6,
-                    scale: shouldReduceMotion ? 1 : isActive ? 1 : isAdjacent ? 0.88 : 0.78,
-                    x: shouldReduceMotion ? 0 : isActive ? 0 : distance < 0 ? -92 : 92,
+                    rotate: useFlatCards ? 0 : isActive ? 0 : distance < 0 ? -2.6 : 2.6,
+                    scale: useFlatCards ? 1 : isActive ? 1 : isAdjacent ? 0.88 : 0.78,
+                    x: useFlatCards ? 0 : isActive ? 0 : distance < 0 ? -92 : 92,
                     zIndex: isActive ? 3 : isAdjacent ? 2 : 1,
                   }}
                   aria-hidden={!isActive}
@@ -209,4 +220,23 @@ export function ServiceFeatureCarousel({ services }: ServiceFeatureCarouselProps
       </div>
     </div>
   );
+}
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+
+    const updateMatch = () => {
+      setMatches(mediaQuery.matches);
+    };
+
+    updateMatch();
+    mediaQuery.addEventListener("change", updateMatch);
+
+    return () => mediaQuery.removeEventListener("change", updateMatch);
+  }, [query]);
+
+  return matches;
 }

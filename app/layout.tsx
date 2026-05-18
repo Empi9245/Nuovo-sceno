@@ -1,5 +1,6 @@
-import "@fontsource-variable/archivo";
-import "@fontsource-variable/manrope";
+import "@fontsource/montserrat/300.css";
+import "@fontsource/montserrat/400.css";
+import "@fontsource/montserrat/700.css";
 import type { Metadata } from "next";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SiteFooter } from "@/components/site-footer";

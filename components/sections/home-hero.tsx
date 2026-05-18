@@ -11,7 +11,6 @@ import { homepageStats } from "@/data/site";
 
 const headlineLines = ["Scenografica", "stampa, set e", "allestimenti", "pronti per la scena."];
 const scopeItems = ["Stampa grande formato", "Allestimenti", "Set design", "Accessori di scena"];
-const scopeFlapGlyphs = "SCENOGRAFICALABSETMATERIALIPOSA";
 
 export function HomeHero() {
   const ref = useRef<HTMLElement | null>(null);
@@ -126,7 +125,7 @@ export function HomeHero() {
             {scopeItems.map((item, index) => (
               <li key={item} style={{ "--scope-item": index } as CSSProperties}>
                 <span className="home-hero__scope-index">{String(index + 1).padStart(2, "0")}</span>
-                <SplitFlapLabel text={item} itemIndex={index} />
+                <SplitFlapLabel text={item} />
               </li>
             ))}
           </motion.ul>
@@ -243,26 +242,24 @@ export function HomeHero() {
   );
 }
 
-function SplitFlapLabel({ text, itemIndex }: { text: string; itemIndex: number }) {
+function SplitFlapLabel({ text }: { text: string }) {
+  let characterIndex = 0;
+
   return (
     <span className="home-hero__scope-label" aria-label={text}>
-      {Array.from(text).map((character, index) => {
-        if (character === " ") {
-          return <span className="home-hero__scope-gap" aria-hidden="true" key={`${text}-gap-${index}`} />;
-        }
+      {text.split(" ").map((word, wordIndex) => (
+        <span className="home-hero__scope-word" aria-hidden="true" key={`${text}-${word}-${wordIndex}`}>
+          {Array.from(word).map((character) => {
+            const style = { "--scope-char": characterIndex++ } as CSSProperties;
 
-        const style = { "--scope-char": index } as CSSProperties;
-
-        return (
-          <span className="home-hero__scope-char" aria-hidden="true" key={`${text}-${character}-${index}`} style={style}>
-            <span className="home-hero__scope-char-base">{character}</span>
-            <span className="home-hero__scope-reel">
-              <span className="home-hero__scope-reel-hidden">{character}</span>
-              <span>{character}</span>
-            </span>
-          </span>
-        );
-      })}
+            return (
+              <span className="home-hero__scope-char" key={`${text}-${word}-${character}-${characterIndex}`} style={style}>
+                {character}
+              </span>
+            );
+          })}
+        </span>
+      ))}
     </span>
   );
 }

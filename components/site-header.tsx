@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -47,14 +48,16 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="site-header__inner">
         <Link href="/" className="brand-mark" aria-label="Scenografica, torna alla homepage">
-          <span className="brand-mark__symbol" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span>
-            <strong>Scenografica</strong>
-            <small>wide format & set design</small>
+          <span className="brand-mark__logo-frame" aria-hidden="true">
+            <Image
+              src="/images/Logo.png"
+              alt=""
+              width={1024}
+              height={1024}
+              priority
+              sizes="176px"
+              className="brand-mark__logo"
+            />
           </span>
         </Link>
 

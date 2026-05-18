@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import { CtaSection } from "@/components/cta-section";
 import { DepartmentBoard } from "@/components/department-board";
 import { EnvironmentMap } from "@/components/environment-map";
@@ -70,6 +71,14 @@ export default function HomePage() {
               </Reveal>
             );
           })}
+          <Reveal as="article" className="trust-item trust-item--image" delay={trustPoints.length * 0.045}>
+            <Image
+              src="/images/laboratorio-wide-stampa-materiali.jpg"
+              alt="Vista ampia del laboratorio Scenografica con stampante grande formato, materiali e tecnici al lavoro."
+              fill
+              sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1020px) 50vw, 25vw"
+            />
+          </Reveal>
         </div>
         <div className="client-strip" aria-label="Alcuni clienti e produzioni citati dal sito attuale">
           {clients.map((client, index) => (

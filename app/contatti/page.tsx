@@ -16,16 +16,24 @@ export default function ContactPage() {
   return (
     <section className="work-order-page">
       <div className="work-order-page__layout">
-        <aside className="work-order-page__panel" aria-label="Informazioni di contatto">
-          <Reveal className="work-order-page__intro">
-            <p className="eyebrow">Contatti</p>
-            <h1>Trasforma il progetto in un brief di produzione.</h1>
-            <p>
-              Un preventivo utile parte da poche informazioni chiare: ambito, formato, tempi, luogo, materiali
-              disponibili e file di riferimento.
-            </p>
-          </Reveal>
+        <Reveal className="work-order-page__intro">
+          <p className="eyebrow">Contatti</p>
+          <h1>Trasforma il progetto in un brief di produzione.</h1>
+          <p>
+            Un preventivo utile parte da poche informazioni chiare: ambito, formato, tempi, luogo, materiali disponibili
+            e file di riferimento.
+          </p>
+        </Reveal>
 
+        <Reveal className="work-order-page__form" delay={0.08}>
+          <div className="work-order-page__form-head">
+            <span>Work order</span>
+            <h2>Richiesta di produzione</h2>
+          </div>
+          <ContactForm />
+        </Reveal>
+
+        <aside className="work-order-page__panel" aria-label="Informazioni di contatto">
           <div className="work-order-page__contact">
             <h2>Contatti diretti</h2>
             <p>
@@ -60,14 +68,6 @@ export default function ContactPage() {
             </ul>
           </div>
         </aside>
-
-        <Reveal className="work-order-page__form" delay={0.08}>
-          <div className="work-order-page__form-head">
-            <span>Work order</span>
-            <h2>Richiesta di produzione</h2>
-          </div>
-          <ContactForm />
-        </Reveal>
       </div>
     </section>
   );

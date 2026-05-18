@@ -10,8 +10,8 @@ Use restrained surfaces, strong typography, real images, hairline dividers, and 
 
 ### Typography
 
-- Headings and brand: Archivo Variable.
-- Body and UI: Manrope Variable.
+- Headings and brand: Montserrat Bold.
+- Body and UI: Montserrat Regular, with Montserrat Light for descriptive copy.
 - Display headings should be strong but not so large that the first viewport becomes unusable.
 - Interior pages must fit the hero message and primary image/action in the first viewport on desktop where practical.
 - Body line length target: 65-75ch.
@@ -294,4 +294,3 @@ Motion must not make pages feel more similar. It should support each page's layo
 - Text contrast over images must be checked.
 - Avoid layout shift and heavy effects.
 - First viewport must make page purpose obvious.
-

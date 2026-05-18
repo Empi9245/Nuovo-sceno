@@ -8,7 +8,7 @@ This file is for future AI sessions. Read it after `PRODUCT.md` and `DESIGN.md`.
 - React 19.
 - Motion via `motion/react`.
 - Icons via `lucide-react`.
-- Fonts loaded in `app/layout.tsx`: Archivo Variable and Manrope Variable.
+- Fonts loaded in `app/layout.tsx`: Montserrat 300, 400, and 700 via Fontsource.
 - Global CSS only, in `app/globals.css`.
 
 ## Core Files

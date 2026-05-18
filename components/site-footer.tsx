@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { contactInfo, navItems, servicePillars, sectors } from "@/data/site";
@@ -8,14 +9,15 @@ export function SiteFooter() {
       <div className="site-footer__grid">
         <div className="site-footer__brand">
           <Link href="/" className="brand-mark brand-mark--footer" aria-label="Scenografica, homepage">
-            <span className="brand-mark__symbol" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </span>
-            <span>
-              <strong>Scenografica</strong>
-              <small>wide format & set design</small>
+            <span className="brand-mark__logo-frame brand-mark__logo-frame--footer" aria-hidden="true">
+              <Image
+                src="/images/Logo.png"
+                alt=""
+                width={1024}
+                height={1024}
+                sizes="244px"
+                className="brand-mark__logo brand-mark__logo--footer"
+              />
             </span>
           </Link>
           <p>
